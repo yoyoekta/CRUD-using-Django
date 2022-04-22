@@ -1,0 +1,42 @@
+{% extends 'employee_register/base.html' %}
+
+{% block content %}
+
+<table class = "table table-borderless">
+    <thead class = "border-bottom bg-secondary bg-gradient text-light font-weight-bold">
+        <tr>
+            <td> Full Name </td>
+            <td> Mobile </td>
+            <td> Position </td>
+            <td>
+                <a href = "{% url 'employee_insert' %}" class = "btn btn-outline-light">
+                    <i class="fa-solid fa-plus"></i> Add New
+                </a>
+            </td>
+        </tr>
+    </thead> 
+    <tbody class = "bg-light text-dark">
+        {% for employee in employee_list %}
+
+        <tr>
+            <td>{{employee.fullname}}</td>
+            <td>{{employee.mobile}}</td>
+            <td>{{employee.position}}</td>
+            <td>
+                <a href = " {% url 'employee_update' employee.id %} ">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </a>
+
+                <form action = "{% url 'employee_delete' employee.id %}" method = "post" class = "d-inline">
+                    {% csrf_token %}
+                    <button type = "submit" class = "btn mb-2">
+                        <i class="fa-solid fa-trash-can float-right"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

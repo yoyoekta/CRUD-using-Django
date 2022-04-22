@@ -1,0 +1,29 @@
+{% extends 'employee_register/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form action = "" method ="post" autocomplete = "off">
+    {% csrf_token %}
+    {{form.fullname|as_crispy_field}}
+    {{form.mobile|as_crispy_field}}
+    <div class = "row">
+        <div class= "col-md-4">
+            {{form.emp_code|as_crispy_field}}
+        </div>
+        <div class ="col-md-8">
+            {{form.position|as_crispy_field}}
+        </div>
+    </div>
+    <br>
+    <div class = "row">
+        <div>
+            <button type = "submit" class = "btn btn-success gap-* btn-lg col-md-7 me-md-5"><i class="fa-solid fa-database"></i> Submit </button>
+            <a href = "{% url 'employee_list' %}" class = "btn btn-secondary gap-* btn-lg col-md-4 me-1 float-right">
+                <i class="fa-solid fa-bars-staggered"></i> Back to List
+            </a>
+
+        </div>
+    </div>
+    
+</form>
+{% endblock content %}
